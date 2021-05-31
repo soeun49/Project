@@ -36,6 +36,7 @@ public class PhonebookAPP {
 				
 			case 5: 
 				run=false;
+				System.out.println("다시 입력해주세요");
 	
 				break;
 				

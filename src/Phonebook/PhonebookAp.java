@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class PhonebookAp {
 
 	public static void main(String[] args) {
-		selectAll();
+//		selectAll();
 //		insertNew();
 //		delete();
 //		search();

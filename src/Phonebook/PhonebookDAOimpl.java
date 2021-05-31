@@ -39,12 +39,12 @@ public class PhonebookDAOimpl implements PhonebookDAO {
 			rs=stmt.executeQuery(sql);
 			
 			while (rs.next()) {
-				Long id=rs.getLong(1);
+				Long telid=rs.getLong(1);
 				String name=rs.getString(2);
 				String mobile=rs.getString(3);
 				String phonehome=rs.getString(4);
 				
-				PhonebookVO vo=new PhonebookVO(id,name,mobile,phonehome);
+				PhonebookVO vo=new PhonebookVO(telid,name,mobile,phonehome);
 				list.add(vo);
 				
 			}
@@ -71,8 +71,7 @@ public class PhonebookDAOimpl implements PhonebookDAO {
 		ResultSet rs= null;
 		
 		List<PhonebookVO> list = new ArrayList<>();
-		String sql= "SELECT * FROM phone_book "+
-					" WHERE name LIKE ?";
+		String sql= "SELECT id,name,hp,tel FROM phone_book WHERE name LIKE ?";
 		 
 		try {
 			conn=getConnection();
@@ -82,12 +81,12 @@ public class PhonebookDAOimpl implements PhonebookDAO {
 			rs=pstmt.executeQuery();
 			
 			while (rs.next()) {
-				Long id= rs.getLong("id");
+				Long telid= rs.getLong("id");
 				String name=rs.getString("name");
 				String mobile=rs.getString("hp");
 				String phonehome=rs.getString("tel");
 				
-				PhonebookVO vo=new PhonebookVO(id,name,mobile,phonehome);
+				PhonebookVO vo=new PhonebookVO(telid,name,mobile,phonehome);
 				list.add(vo);
 						
 			}
@@ -122,6 +121,7 @@ public class PhonebookDAOimpl implements PhonebookDAO {
 			rs=pstmt.executeQuery();
 			
 			if (rs.next()) {
+				Long telid = rs.getLong(1);
 				String name=rs.getString(2);
 				String mobile=rs.getString(3);
 				String phonehome=rs.getString(4);

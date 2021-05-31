@@ -2,13 +2,13 @@ package Phonebook;
 
 public class PhonebookVO {
 
-	private Long id;
+	private Long telid;
 	private String name;
 	private String phonehome;
 	private String mobile;
 	
 	public PhonebookVO (Long id, String name, String phonehome, String mobile){
-		this.id=id;
+		this.telid=telid;
 		this.name=name;
 		this.phonehome=phonehome;
 		this.mobile=mobile;
@@ -16,11 +16,11 @@ public class PhonebookVO {
 	}
 
 	public Long getId() {
-		return id;
+		return telid;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.telid = telid;
 	}
 
 	public String getName() {
@@ -49,7 +49,7 @@ public class PhonebookVO {
 
 	@Override
 	public String toString() {
-		return "PhonebookVO [id=" + id + ", name=" + name + ", mobile=" + mobile + ", phonehome=" + phonehome + "]";
+		return "PhonebookVO [telid=" + telid + ", name=" + name + ", mobile=" + mobile + ", phonehome=" + phonehome + "]";
 	}
 	
 }
