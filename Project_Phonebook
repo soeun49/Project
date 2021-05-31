@@ -1,0 +1,23 @@
+CREATE USER C##bituser identified by bituser
+GRANT connect, resource TO C##bituser
+SELECT * FROM DBA_USER
+GRANT create session to C##bituser 
+
+CREATE TABLE phone_book (
+    id NUMBER(10),
+    name VARCHAR2(20),
+    hp VARCHAR2(30),
+    tel VARCHAR2(30),
+    PRIMARY KEY (id)
+    );
+desc phone_book
+SELECT MAX (id) FROM phone_book
+
+CREATE SEQUENCE seq_phone_book_pk
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 10000
+NOCACHE
+
+desc phone_book
