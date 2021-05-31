@@ -10,7 +10,7 @@ public interface PhonebookDAO {
 	public List <PhonebookVO> search(String keyword);
 	public PhonebookVO get(Long id);
 	public boolean insert (PhonebookVO vo);
-	public boolean delte (Long id);
+	public boolean delete (Long id);
 
 	
 

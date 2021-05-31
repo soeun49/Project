@@ -35,42 +35,175 @@ public class PhonebookDAOimpl implements PhonebookDAO {
 			conn=getConnection();
 			stmt=conn.createStatement();
 			
-			String sql="SELECT 	 "
+			String sql="SELECT id,name,hp,tel FROM phone_book";
+			rs=stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Long id=rs.getLong(1);
+				String name=rs.getString(2);
+				String mobile=rs.getString(3);
+				String phonehome=rs.getString(4);
+				
+				PhonebookVO vo=new PhonebookVO(id,name,mobile,phonehome);
+				list.add(vo);
+				
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try { 
+				rs.close();
+				stmt.close();
+				conn.close();
+				
+			}catch (Exception e) {
+				
+			}
 		}
 		
-		return null;
+		return list;
 	}
 
 	@Override
 	public List<PhonebookVO> search(String keyword) {
 		Connection conn= null;
 		PreparedStatement pstmt= null;
+		ResultSet rs= null;
 		
-		return null;
+		List<PhonebookVO> list = new ArrayList<>();
+		String sql= "SELECT * FROM phone_book "+
+					" WHERE name LIKE ?";
+		 
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword +"%");
+			
+			rs=pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Long id= rs.getLong("id");
+				String name=rs.getString("name");
+				String mobile=rs.getString("hp");
+				String phonehome=rs.getString("tel");
+				
+				PhonebookVO vo=new PhonebookVO(id,name,mobile,phonehome);
+				list.add(vo);
+						
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				
+			}
+		}
+				
+		return list;
 	}
 
 	@Override
 	public PhonebookVO get(Long id) {
 		Connection conn=null;
 		PreparedStatement pstmt= null;
+		ResultSet rs=null;
 		
-		return null;
+		PhonebookVO vo=null;
+		
+		try {
+			conn=getConnection();
+			String sql = "SELECT id,name,hp,tel FROM phone_book WHERE id=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setLong(1, id);
+			rs=pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String name=rs.getString(2);
+				String mobile=rs.getString(3);
+				String phonehome=rs.getString(4);
+				
+				vo=new PhonebookVO(id,name,mobile,phonehome);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();			
+			}catch (Exception e) {
+				
+			}
+		}
+				
+		return vo;
 	}
 
 	@Override
 	public boolean insert(PhonebookVO vo) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
+		int insertedCount=0;
 		
-		return false;
+		try {
+			conn=getConnection();
+			String sql="INSERT INTO phone_book VALUES (seq_phone_book_pk.NEXTVAL,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getMobile());
+			pstmt.setString(3, vo.getPhonehome());
+			
+			insertedCount=pstmt.executeUpdate();
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				conn.close();
+				
+			}catch (Exception e) {
+				
+			}
+		}
+		
+		return 1 == insertedCount;
 	}
 
 	@Override
-	public boolean delte(Long id) {
+	public boolean delete(Long id) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
+		int deletedCount=0;
 		
-		return false;
+		try {
+			conn=getConnection();
+			String sql="DELETE FROM phone_book WHERE id = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setLong(1, id);
+			
+			deletedCount=pstmt.executeUpdate();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				pstmt.close();
+				conn.close();
+				
+			}catch (Exception e) {
+				
+			}
+			
+		}
+		return 1==deletedCount;
 	}
 
 

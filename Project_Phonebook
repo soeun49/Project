@@ -11,7 +11,7 @@ CREATE TABLE phone_book (
     PRIMARY KEY (id)
     );
 desc phone_book
-SELECT MAX (id) FROM phone_book
+SELECT MAX (id) +1 FROM phone_book
 
 CREATE SEQUENCE seq_phone_book_pk
 START WITH 1
@@ -21,3 +21,17 @@ MAXVALUE 10000
 NOCACHE
 
 desc phone_book
+SELECT * FROM phone_book
+INSERT INTO phone_book 
+VALUES (1, '고길동', '010-1234-5678','02-123-4567')
+INSERT INTO phone_book 
+VALUES (2, '도우너', '010-9876-5432','02-987-6543')
+INSERT INTO phone_book 
+VALUES (3, '마이콜', '010-9999-8888','02-777-6666')
+INSERT INTO phone_book 
+VALUES (4, '또치', '010-1111-2222','02-123-1234')
+INSERT INTO phone_book 
+VALUES (5, '둘리', '010-1357-9999','02-246-8000')
+
+SELECT * FROM phone_book
+commit

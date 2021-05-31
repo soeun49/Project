@@ -4,52 +4,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public class PhonebookAPP {
+public class PhonebookAp {
 
 	public static void main(String[] args) {
-		boolean run= true;
-		Scanner scanner = new Scanner(System.in);
+		selectAll();
+//		insertNew();
+//		delete();
+//		search();
 		
-		while (run) {
-			System.out.println("******************************************");
-			System.out.println("*         전화번호 관리 프로그램                *");
-			System.out.println("******************************************");
-			System.out.println("1.리스트 | 2. 등록 | 3. 삭제| 4. 검색 | 5.종료");
-			System.out.println("-------------------------------------------");
-			System.out.print("메뉴번호> ");
-			
-			int menuNum=scanner.nextInt();
-			
-		switch (menuNum) {
-			case 1: 
-				selectAll();
-				
-				
-			case 2: 
-				insertNew();
-				
-			case 3: 
-				delete();
-				
-			case 4: 
-				search();
-				
-			case 5: 
-				run=false;
-	
-				break;
-				
-		}
-		System.out.println();
-		}
-		System.out.println("****************************************");
-		System.out.println("*                 감사합니다               *");
-		System.out.println("*****************************************");
-		scanner.close();
-	
 	}
-	
-	
+
 	private static void selectAll() {
 		PhonebookDAO dao=new PhonebookDAOimpl();
 		List<PhonebookVO> list=dao.getlist();
@@ -117,7 +81,6 @@ public class PhonebookAPP {
 					vo.getId(),vo.getName(),vo.getMobile(),vo.getPhonehome());
 					}
 				
-	
 		
 	}
 }

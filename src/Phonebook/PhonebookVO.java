@@ -49,7 +49,7 @@ public class PhonebookVO {
 
 	@Override
 	public String toString() {
-		return "PhonebookVO [id=" + id + ", name=" + name + ", phonehome=" + phonehome + ", mobile=" + mobile + "]";
+		return "PhonebookVO [id=" + id + ", name=" + name + ", mobile=" + mobile + ", phonehome=" + phonehome + "]";
 	}
 	
 }
