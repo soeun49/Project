@@ -7,7 +7,7 @@ public class PhonebookVO {
 	private String phonehome;
 	private String mobile;
 	
-	public PhonebookVO (Long id, String name, String phonehome, String mobile){
+	public PhonebookVO (Long telid, String name, String phonehome, String mobile){
 		this.telid=telid;
 		this.name=name;
 		this.phonehome=phonehome;
@@ -19,7 +19,7 @@ public class PhonebookVO {
 		return telid;
 	}
 
-	public void setId(Long id) {
+	public void setId(Long telid) {
 		this.telid = telid;
 	}
 

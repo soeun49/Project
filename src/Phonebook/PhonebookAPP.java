@@ -14,7 +14,7 @@ public class PhonebookAPP {
 			System.out.println("******************************************");
 			System.out.println("*         전화번호 관리 프로그램                *");
 			System.out.println("******************************************");
-			System.out.println("1.리스트 | 2. 등록 | 3. 삭제| 4. 검색 | 5.종료");
+			System.out.println("1.리스트 | 2. 등록 | 3. 삭제 | 4. 검색 | 5.종료");
 			System.out.println("-------------------------------------------");
 			System.out.print("메뉴번호> ");
 			
@@ -23,25 +23,26 @@ public class PhonebookAPP {
 		switch (menuNum) {
 			case 1: 
 				selectAll();
-				
+				break;
 				
 			case 2: 
-				insertNew();
+				insertNew(scanner);
+				break;
 				
 			case 3: 
-				delete();
+				delete(scanner);
+				break;
 				
 			case 4: 
-				search();
+				search(scanner);
+				break;
 				
 			case 5: 
 				run=false;
-				System.out.println("다시 입력해주세요");
-	
 				break;
 				
 		}
-		System.out.println();
+
 		}
 		System.out.println("****************************************");
 		System.out.println("*                 감사합니다               *");
@@ -67,8 +68,8 @@ public class PhonebookAPP {
 		
 	}
 	
-	private static void insertNew() {
-		Scanner scanner=new Scanner(System.in);
+	private static void insertNew(Scanner scanner) {
+		//Scanner scanner=new Scanner(System.in);
 		
 		System.out.println("<2.등록>");
 		System.out.print(">이름: ");
@@ -79,21 +80,21 @@ public class PhonebookAPP {
 		String phonehome=scanner.next();
 		
 		PhonebookVO vo=new PhonebookVO(null,name, mobile, phonehome);
-		PhonebookDAO dao= new PhonebookDAOimpl();
+		PhonebookDAO dao=new PhonebookDAOimpl();
 		
-		System.out.printf("등록되었습니다");
+		System.out.println("등록되었습니다");
 		
-		scanner.close();
+		//scanner.close();
 		
 	}
 	
-	private static void delete() {
-		Scanner scanner=new Scanner(System.in);
+	private static void delete(Scanner scanner) {
+//		Scanner scanner=new Scanner(System.in);
 		System.out.println("<3.삭제>");
 		System.out.print(">번호: ");
 		int id = scanner.nextInt();
 		
-		PhonebookDAO dao=new PhonebookDAOimpl();
+		PhonebookDAO dao =new PhonebookDAOimpl();
 		
 		System.out.println("삭제되었습니다");
 		
@@ -101,8 +102,8 @@ public class PhonebookAPP {
 		
 	}
 	
-	private static void search() {
-		Scanner scanner=new Scanner(System.in);
+	private static void search(Scanner scanner) {
+//		Scanner scanner=new Scanner(System.in);
 		System.out.println("<4.검색>");
 		System.out.print(">이름:");
 		String keyword = scanner.next();
